@@ -1,6 +1,9 @@
 package spring.boot.data.rest.springdatarest.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -46,6 +49,14 @@ public class UserRatingController {
         return userRatingRepository.findByPkUserId(userId).stream().map(userRating -> toDto(userRating)).collect(Collectors.toList());
     }
 
+    @GetMapping("/pageable")
+    public Page<RatingDto> getAllRatingsForUser(@PathVariable("userId") Long userId, Pageable pageable) {
+        verifyUser(userId);
+        Page<UserRating> userRatingPage = userRatingRepository.findByPkUserId(userId, pageable);
+        List<RatingDto> ratingDtos = userRatingPage.getContent().stream().map(userRating -> toDto(userRating)).collect(Collectors.toList());
+        return new PageImpl<RatingDto>(ratingDtos, pageable, userRatingPage.getTotalPages());
+    }
+
     @GetMapping("/average")
     public AbstractMap.SimpleEntry<String, Double> getAverage(@PathVariable("userId") Long userId) {
         verifyUser(userId);
@@ -56,10 +67,7 @@ public class UserRatingController {
 
 
     public User verifyUser(Long userId) {
-        User user = userRepository.findById(userId).orElse(null);
-        if (user == null)
-            throw new NoSuchElementException("user does not exist: " + userId);
-        return user;
+        return userRepository.findById(userId).orElseThrow(() -> new NoSuchElementException("user does not exist: " + userId));
     }
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
