@@ -1,0 +1,12 @@
+GET http://localhost:8080/users/3
+###
+POST http://localhost:8080/users
+Content-Type: application/json
+
+{
+    "firstName": "Chifoo",
+    "lastName": "Mirzaei",
+    "userGroupCode": "1001"
+  }
+
+###

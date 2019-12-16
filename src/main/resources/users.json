@@ -1,14 +1,17 @@
 [
   {
     "firstName": "Hamed",
-    "lastName": "Mirzaei"
+    "lastName": "Mirzaei",
+    "userGroupCode": "1001"
   },
   {
     "firstName": "Reza",
-    "lastName": "Mirzaei"
+    "lastName": "Mirzaei",
+    "userGroupCode": "1001"
   },
   {
     "firstName": "Ali",
-    "lastName": "Mirzaei"
+    "lastName": "Mirzaei",
+    "userGroupCode": "1002"
   }
 ]

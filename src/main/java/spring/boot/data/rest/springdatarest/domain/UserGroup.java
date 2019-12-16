@@ -5,28 +5,25 @@ import lombok.*;
 import javax.persistence.*;
 import java.io.Serializable;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@RequiredArgsConstructor()
 @Setter
 @Getter
+@AllArgsConstructor
+@NoArgsConstructor
+@RequiredArgsConstructor
 @ToString
 @Entity
 @Table
-public class User implements Serializable {
+public class UserGroup implements Serializable {
+
     @Id
     @GeneratedValue
     private Long id;
 
     @NonNull
     @Column
-    private String firstName;
+    private String name;
 
     @NonNull
-    @Column
-    private String lastName;
-
-    @NonNull
-    @ManyToOne
-    private UserGroup userGroup;
+    @Column(unique = true)
+    private Long code;
 }
