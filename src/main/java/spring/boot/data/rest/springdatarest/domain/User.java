@@ -29,4 +29,14 @@ public class User implements Serializable {
     @NonNull
     @ManyToOne
     private UserGroup userGroup;
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        User user = (User) obj;
+        if (user.id != this.id) return false;
+        if (user.firstName != this.firstName) return false;
+        return true;
+    }
 }

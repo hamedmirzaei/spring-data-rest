@@ -1,0 +1,35 @@
+POST http://localhost:8080/users/3/ratings
+Content-Type: application/json
+
+{
+    "score": 5,
+    "comment": "This is awesome",
+    "customerId": 1
+}
+
+###
+POST http://localhost:8080/users/7/ratings
+Content-Type: application/json
+
+{
+    "score": 1,
+    "comment": "This is awesome",
+    "customerId": 1
+}
+###
+POST http://localhost:8080/users/3/ratings
+Content-Type: application/json
+
+{
+    "score": 9,
+    "comment": "This is awesome",
+    "customerId": 1
+}
+
+###
+GET http://localhost:8080/users/3/ratings
+
+###
+GET http://localhost:8080/users/3/ratings/average
+
+###
